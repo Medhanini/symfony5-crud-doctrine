@@ -35,32 +35,6 @@
 
                 </tbody>
             </table>
-                    {% if articles is not empty %}
-            <table>
-                <thead>
-                <tr>
-                    <th>Titre</th>
-                    <th>Auteur</th>
-                    <th>Description</th>
-                    <th>Delete</th>
-                    <th>Update</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for article in articles %}
-                    <tr>
-                        <td>{{ article.titre }}</td>
-                        <td>{{ article.auteur }}</td>
-                        <td>{{ article.description | slice(0, 20) }}...</td>
-                        <td><a href="delete-article/{{ article.id }}">Delete</a></td>
-                        <td><a href="update-article/{{ article.id }}">Update</a></td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>No article found.</p>
-        {% endif %}
         </div>
     </div>
 </body>
