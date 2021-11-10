@@ -51,6 +51,19 @@ class ArticleController extends AbstractController
         );
 
     }
+    /**
+     * @Route("/articles/all")
+     */
+    public function showAction() {
+
+        $articles = $this->getDoctrine()->getRepository(Articles::class);
+        $articles = $articles->findAll();
+
+        return $this->render(
+            'articles/list.html.twig',
+            array('articles' => $articles)
+        );
+    }
     // /**
     //  * @Route("/article", name="article")
     //  */
