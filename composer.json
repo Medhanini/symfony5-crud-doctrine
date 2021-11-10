@@ -19,7 +19,8 @@
         "symfony/proxy-manager-bridge": "5.3.*",
         "symfony/runtime": "5.3.*",
         "symfony/validator": "5.3.*",
-        "symfony/yaml": "5.3.*"
+        "symfony/yaml": "5.3.*",
+        "twig/twig": "^2.0"
     },
     "require-dev": {
         "symfony/maker-bundle": "^1.34"
