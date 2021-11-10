@@ -34,8 +34,8 @@
                         <td>{{ article.titre }}</td>
                         <td>{{ article.auteur }}</td>
                         <td>{{ article.description | slice(0, 20) }}...</td>
-                        <td><a href="delete-article/{{ article.id }}">Delete</a></td>
-                        <td><a href="update-article/{{ article.id }}">Update</a></td>
+                        <td><a href="/delete/{{ article.id }}">Delete</a></td>
+                        <td><a href="/edit/{{ article.id }}">Update</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

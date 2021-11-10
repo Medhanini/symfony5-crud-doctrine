@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Entity\Article as Articles;
 class ArticleController extends AbstractController
 {
@@ -52,7 +54,7 @@ class ArticleController extends AbstractController
 
     }
     /**
-     * @Route("/articles/all")
+     * @Route("/articles/all" , name="articles_all")
      */
     public function showAction() {
 
@@ -65,7 +67,7 @@ class ArticleController extends AbstractController
         );
     }
     /**
-     * @Route("/delete/{id}" , name="article_delete")
+     * @Route("/delete/{id}" , name="delete")
      */
     public function deleteAction($id) {
 
@@ -86,7 +88,7 @@ class ArticleController extends AbstractController
 
     }
     /**
-     * @Route("/edit/{id}", name="article_edit")
+     * @Route("/edit/{id}", name="edit")
      */
     public function updateAction(Request $request, $id) {
 
@@ -102,7 +104,7 @@ class ArticleController extends AbstractController
         $form = $this->createFormBuilder($article)
             ->add('titre', TextType::class)
             ->add('auteur', TextType::class)
-            ->add('description', TextareaType::class)
+            ->add('description', TextType::class)
             ->add('save', SubmitType::class, array('label' => 'Editer'))
             ->getForm();
 
