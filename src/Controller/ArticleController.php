@@ -32,6 +32,25 @@ class ArticleController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    /**
+     * @Route("/article/{id}")
+     */
+    public function viewAction($id) {
+        $article = $this->getDoctrine()->getRepository(Articles::class);
+        $article = $article->find($id);
+
+        if (!$article) {
+            throw $this->createNotFoundException(
+                'Aucun article pour l\'id: ' . $id
+            );
+        }
+
+        return $this->render(
+            'articles/view.html.twig',
+            array('article' => $article)
+        );
+
+    }
     // /**
     //  * @Route("/article", name="article")
     //  */
