@@ -64,6 +64,27 @@ class ArticleController extends AbstractController
             array('articles' => $articles)
         );
     }
+    /**
+     * @Route("/delete/{id}" , name="article_delete")
+     */
+    public function deleteAction($id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $article = $this->getDoctrine()->getRepository(Articles::class);
+        $article = $article->find($id);
+
+        if (!$article) {
+            throw $this->createNotFoundException(
+                'There are no articles with the following id: ' . $id
+            );
+        }
+
+        $em->remove($article);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('articles_all'));
+
+    }
     // /**
     //  * @Route("/article", name="article")
     //  */
