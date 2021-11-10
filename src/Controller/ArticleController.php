@@ -85,6 +85,44 @@ class ArticleController extends AbstractController
         return $this->redirect($this->generateUrl('articles_all'));
 
     }
+    /**
+     * @Route("/edit/{id}", name="article_edit")
+     */
+    public function updateAction(Request $request, $id) {
+
+        $article = $this->getDoctrine()->getRepository(Articles::class);
+        $article = $article->find($id);
+
+        if (!$article) {
+            throw $this->createNotFoundException(
+                'There are no articles with the following id: ' . $id
+            );
+        }
+
+        $form = $this->createFormBuilder($article)
+            ->add('titre', TextType::class)
+            ->add('auteur', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('save', SubmitType::class, array('label' => 'Editer'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+            $article = $form->getData();
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('articles_all'));
+
+        }
+
+        return $this->render(
+            'articles/edit.html.twig',
+            array('form' => $form->createView())
+        );
+
+    }
     // /**
     //  * @Route("/article", name="article")
     //  */
